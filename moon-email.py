@@ -7,7 +7,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
-from turtle import *
 from dominate.tags import *
 
 EMAIL  = ""
