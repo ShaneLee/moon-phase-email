@@ -31,7 +31,7 @@ def get_soup(url):
     return bs(html, 'html.parser')
 
 def get_moon_data():
-	soup = get_soup('https://www.timeanddate.com/moon/uk/derby')
+	soup = get_soup(TIME_AND_DATE_URL_HERE)
 	table = soup.find('table', attrs={'id': 'tb-7dmn'}).find('tbody')
 	for row in table:
 		if (DAY_OF_MONTH == int(row.find('th').text.strip())):
@@ -44,7 +44,7 @@ def get_moon_data():
 
 def get_weather_data():
 	date = str(get_date_y_m_d())
-	soup = get_soup('https://www.metoffice.gov.uk/weather/forecast/gcqvn6pq4#?date=' + date)
+	soup = get_soup(MET_OFFICE_URL + date)
 	data_tab = soup.find('li', attrs={'data-tab-id': date})
 	return {
 		'sunrise': data_tab.find_all('div', attrs={'class': 'weather-text'})[0].find('time').text,
