@@ -17,3 +17,9 @@ Insert your e-mail details in the following at the top of the file:
   SMTP_SERVER = 
   SMTP_PORT   =
   
+
+
+### TODO 
+
+[] Add images for moon 
+[] Add images for weather 
