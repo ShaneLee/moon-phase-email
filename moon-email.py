@@ -14,6 +14,7 @@ PWD    = ""
 SMTP_SERVER = ""
 SMTP_PORT   = ""
 
+RECIEVING_EMAIL = "" 
 
 DAY_OF_MONTH = datetime.now().day
 CURRENT_DATE = datetime.now()
@@ -79,7 +80,7 @@ def create_html():
 
 def send_moon_phase_email():
     fromaddr = EMAIL
-    toaddrs = 'me@shanel.ee'
+    toaddrs = RECIEVING_EMAIL
     msg = MIMEMultipart('alternative')
     msg['To'] = toaddrs
     msg['From'] = EMAIL
