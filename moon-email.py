@@ -40,7 +40,15 @@ def get_moon_data():
 					return 'Moon does not pass the meridian on this day.'
 			except:
 				pass
-			return row.find_all('td')[7]['title']
+			return row.find_all('td')[8]['title']
+		
+def get_moon_summary():
+	soup = get_soup('https://www.timeanddate.com/moon/uk/derby')
+	section = soup.find('section', attrs={'id': 'bk-focus'})
+ 	return {
+		'img': "http://timeanddate.com/" + section.find('img')['src'],
+		'phase': section.find('div', attrs={'id': 'qlook'}).find('p').text
+	}
 
 def get_weather_data():
 	date = str(get_date_y_m_d())
@@ -56,10 +64,13 @@ def get_weather_data():
 
 def create_html():
 	weather_data = get_weather_data()
+	moon_summary = get_moon_summary()
 	doc = dominate.document(title='Biggest Trades Today')
 	with doc:
 		with div(id='moon-summary'):
 			caption(h3('Moon Phase Tonight: ' + get_date()))
+			img(src=moon_summary['img'])
+			p(moon_summary['phase'])
 			p(get_moon_data())
 			p(weather_data['weather-description'])
 		with table(id='weather-summary'):
